@@ -67,6 +67,7 @@ header {
     vertical-align: center;
     top:0px;
     border-bottom: solid 1px black;
+    z-index: 5;
 }
 
 .logo-text {
@@ -119,7 +120,6 @@ button img {
     color: #fff;
     transition: 0.3s;
     overflow-y: auto;
-    z-index: 20;
 }
 
 #toggleButton {
@@ -344,6 +344,7 @@ footer {
     overflow-y: auto;
     padding: 20px;
     box-sizing: border-box;
+    z-index: 20;
 }
 
 .product-details-container img {
