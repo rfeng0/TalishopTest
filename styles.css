@@ -67,6 +67,7 @@ header {
     vertical-align: center;
     top:0px;
     border-bottom: solid 1px black;
+    z-index: 1;
 }
 
 .logo-text {
