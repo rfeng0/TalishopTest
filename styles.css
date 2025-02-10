@@ -88,7 +88,6 @@ header {
 button {
     background-color: transparent;
     border: none;
-    padding: 20px;
 }
 
 h1 {
@@ -336,10 +335,10 @@ footer {
 
 .product-details-container {
     position: fixed;
-    top: 83px;
+    top: 0px;
     right: -100%;
     width: 50%;
-    height: calc(100% - 83px);
+    height: 100%;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: right 0.3s ease-in-out;
