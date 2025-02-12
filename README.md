@@ -9,6 +9,9 @@ Tasks to be done:
 - scroll function on the menu page (?)
 - easier modification
 - extra: fix the sort system so it's not stupid
+- remove "Bars" option
+- change "Other" to "Other Snacks"
+- combine peanut and almond allergies
 
 Tasks for later:
 - change bear logo
