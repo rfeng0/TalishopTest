@@ -51,7 +51,7 @@
 
 <div class="controls-section">
     <div class="category-dropdown">
-        <select id="categoryDropdown" onchange="filterProductsDropdown()">
+        <select id="categoryDropdown" onchange="renderProducts()">
             <option value="All">All</option>
             <option value="Chips">Chips</option>
             <option value="Cookies">Cookies</option>
@@ -67,13 +67,13 @@
 
 <div id="controlsContainer" class="controls-container">
     <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search products..." oninput="searchProducts()">
+        <input type="text" id="searchInput" placeholder="Search products..." oninput="renderCatalogue()">
     </div>
 
-    <label><input type="checkbox" id="peanutFreeCheckbox" onclick="applyFilters()">Peanut Free |</label>
-    <label><input type="checkbox" id="almondFreeCheckbox" onclick="applyFilters()">Almond Free</label>
+    <label><input type="checkbox" id="peanutFreeCheckbox" onclick="renderCatalogue()">Peanut Free |</label>
+    <label><input type="checkbox" id="almondFreeCheckbox" onclick="renderCatalogue()">Almond Free</label>
     <br><label for="sortDropdown">Sort By:</label>
-    <select id="sortDropdown" onchange="sortCatalogue()">
+    <select id="sortDropdown" onchange="renderCatalogue()">
         <option value="default">Default</option>
         <option value="price">Price</option>
         <option value="alphabetical">Alphabetical</option>
@@ -137,13 +137,13 @@
 
     const catalogueProducts = products;
 
-    function renderCatalogue(products) { // creates and adds products to the page
+    function renderCatalogue() { // creates and adds products to the page
         var catalogueContainer = document.querySelector(".catalogue-container");
         catalogueContainer.innerHTML = '';
-
+        var filteredProducts = sortCatalogue(searchProducts(applyFilters(filterProductsDropdown(catalogueProducts))))
         var currentCategory = null;
-
-        products.forEach(function(product, index) {
+        
+        filteredProducts.forEach(function(product, index) {
             var productElement = document.createElement("div");
             productElement.className = "product";
 
@@ -191,29 +191,17 @@
         });
     }
 
-    function filterProducts(category) { // calls renderProducts with filtered products based on the parameter; unused?
-        if (category === 'All') {
-            renderCatalogue(catalogueProducts);
-        } else {
-            var filteredProducts = catalogueProducts.filter(function (product) {
-                return product[0] === category;
-            });
-            renderCatalogue(filteredProducts);
-        }
-    }
-
-    function filterProductsDropdown() { // checks dropdown, sorts, then rerenders the catalogue with filtered products; called by the dropdown
+    function filterProductsDropdown(initialProducts) { // checks dropdown, sorts, then rerenders the catalogue with filtered products; called by the dropdown
         var categoryDropdown = document.getElementById("categoryDropdown");
         var selectedCategory = categoryDropdown.value;
 
         if (selectedCategory === 'All') {
-            renderCatalogue(catalogueProducts);
+            return initialProducts;
         } else {
-            var filteredProducts = catalogueProducts.filter(function (product) {
+            var filteredProducts = initialProducts.filter(function (product) {
                 return product[0] === selectedCategory;
             });
-            sortCatalogue()
-            renderCatalogue(filteredProducts);
+            return filteredProducts;
         }
     }
 
@@ -233,19 +221,19 @@
         document.querySelector(".product-details-container").style.right = "-100%";
     }
 
-    function searchProducts() { // filters products based on search and renders; called by typing
+    function searchProducts(initialProducts) { // filters products based on search and renders; called by typing
         var searchInput = document.getElementById("searchInput").value.toLowerCase();
-        var filteredProducts = catalogueProducts.filter(function (product) {
+        var filteredProducts = initialProducts.filter(function (product) {
             return product[2].toLowerCase().includes(searchInput) || product[3].toLowerCase().includes(searchInput);
         });
-        renderCatalogue(filteredProducts);
+        return filteredProducts;
     }
 
-    function applyFilters() { // checks the allergy boxes, filters, then renders the products; called by allegy buttons
+    function applyFilters(initialProducts) { // checks the allergy boxes, filters, then renders the products; called by allegy buttons
         var peanutFreeChecked = document.getElementById("peanutFreeCheckbox").checked;
         var almondFreeChecked = document.getElementById("almondFreeCheckbox").checked;
 
-        var filteredProducts = catalogueProducts.filter(function (product) {
+        var filteredProducts = initialProducts.filter(function (product) {
             var passesFilter = true;
             if (peanutFreeChecked && product[5] === "1") {
                 passesFilter = false;
@@ -256,26 +244,26 @@
             return passesFilter;
         });
 
-        renderCatalogue(filteredProducts);
+        return filteredProducts;
     }
 
     const defaultOrder = catalogueProducts.slice();
 
-    function sortCatalogue() { // sorts, then renders the catalogue; called by the sort dropdown
+    function sortCatalogue(initialProducts) { // sorts, then renders the catalogue; called by the sort dropdown
         var sortOption = document.getElementById("sortDropdown").value;
 
         if (sortOption === "default") {
-            renderCatalogue(defaultOrder);
+            return initialProducts;
         } else if (sortOption === "price") {
-            catalogueProducts.sort(function(a, b) {
+            initialProducts.sort(function(a, b) {
                 return parseFloat(a[4]) - parseFloat(b[4]);
             });
-            renderCatalogue(catalogueProducts);
+            return initialProducts;
         } else if (sortOption === "alphabetical") {
-            catalogueProducts.sort(function(a, b) {
+            initialProducts.sort(function(a, b) {
                 return a[2].localeCompare(b[2]);
             });
-            renderCatalogue(catalogueProducts);
+            return initialProducts;
         }
     }
 
