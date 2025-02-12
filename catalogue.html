@@ -140,8 +140,51 @@
     function renderCatalogue() { // creates and adds products to the page
         var catalogueContainer = document.querySelector(".catalogue-container");
         catalogueContainer.innerHTML = '';
-        var filteredProducts = sortCatalogue(searchProducts(applyFilters(filterProductsDropdown(catalogueProducts))))
-        var currentCategory = null;
+        
+        var categoryDropdown = document.getElementById("categoryDropdown");
+        var selectedCategory = categoryDropdown.value;
+        
+        var searchInput = document.getElementById("searchInput").value.toLowerCase();
+
+        var peanutFreeChecked = document.getElementById("peanutFreeCheckbox").checked;
+        var almondFreeChecked = document.getElementById("almondFreeCheckbox").checked;
+
+        var sortOption = document.getElementById("sortDropdown").value;
+        
+        var filteredProducts = catalogueProducts.slice()
+
+        if (selectedCategory !== 'All') {
+            var filteredProducts = filteredProducts.filter(function (product) {
+                return product[0] === selectedCategory;
+            });
+        }
+        
+        if (searchInput !== "") {
+            var filteredProducts = filteredProducts.filter(function (product) {
+                return product[2].toLowerCase().includes(searchInput) || product[3].toLowerCase().includes(searchInput);
+            });
+        }
+
+        var filteredProducts = filteredProducts.filter(function (product) {
+            var passesFilter = true;
+            if (peanutFreeChecked && product[5] === "1") {
+                passesFilter = false;
+            }
+            if (almondFreeChecked && product[6] === "1") {
+                passesFilter = false;
+            }
+            return passesFilter;
+        });
+
+        if (sortOption === "price") {
+            filteredProducts.sort(function(a, b) {
+                return parseFloat(a[4]) - parseFloat(b[4]);
+            });
+        } else if (sortOption === "alphabetical") {
+            filteredProducts.sort(function(a, b) {
+                return a[2].localeCompare(b[2]);
+            });
+        }
         
         filteredProducts.forEach(function(product, index) {
             var productElement = document.createElement("div");
