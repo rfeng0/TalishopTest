@@ -8,7 +8,7 @@ Tasks to be done:
 - readd gmail, find the talishop email
 - scroll function on the menu page (?)
 - easier modification
-- extra: fix the sort system so it's not stupid
+- clean up sorting code so it's not a hazard to programmers
 - remove "Bars" option
 - change "Other" to "Other Snacks"
 - combine peanut and almond allergies
