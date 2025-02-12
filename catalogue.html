@@ -234,20 +234,6 @@
         });
     }
 
-    function filterProductsDropdown(initialProducts) { // checks dropdown, sorts, then rerenders the catalogue with filtered products; called by the dropdown
-        var categoryDropdown = document.getElementById("categoryDropdown");
-        var selectedCategory = categoryDropdown.value;
-
-        if (selectedCategory === 'All') {
-            return initialProducts;
-        } else {
-            var filteredProducts = initialProducts.filter(function (product) {
-                return product[0] === selectedCategory;
-            });
-            return filteredProducts;
-        }
-    }
-
     function showProductDetails(product) { // modifies and shows the product details; called by clicking the image
         document.getElementById("productName").innerHTML = "<b>Product:</b> " + product[2];
         document.getElementById("productDescription").innerHTML = "<b>Description:</b> " + product[7];
@@ -262,52 +248,6 @@
 
     function hideProductDetails() { // hides details
         document.querySelector(".product-details-container").style.right = "-100%";
-    }
-
-    function searchProducts(initialProducts) { // filters products based on search and renders; called by typing
-        var searchInput = document.getElementById("searchInput").value.toLowerCase();
-        var filteredProducts = initialProducts.filter(function (product) {
-            return product[2].toLowerCase().includes(searchInput) || product[3].toLowerCase().includes(searchInput);
-        });
-        return filteredProducts;
-    }
-
-    function applyFilters(initialProducts) { // checks the allergy boxes, filters, then renders the products; called by allegy buttons
-        var peanutFreeChecked = document.getElementById("peanutFreeCheckbox").checked;
-        var almondFreeChecked = document.getElementById("almondFreeCheckbox").checked;
-
-        var filteredProducts = initialProducts.filter(function (product) {
-            var passesFilter = true;
-            if (peanutFreeChecked && product[5] === "1") {
-                passesFilter = false;
-            }
-            if (almondFreeChecked && product[6] === "1") {
-                passesFilter = false;
-            }
-            return passesFilter;
-        });
-
-        return filteredProducts;
-    }
-
-    const defaultOrder = catalogueProducts.slice();
-
-    function sortCatalogue(initialProducts) { // sorts, then renders the catalogue; called by the sort dropdown
-        var sortOption = document.getElementById("sortDropdown").value;
-
-        if (sortOption === "default") {
-            return initialProducts;
-        } else if (sortOption === "price") {
-            initialProducts.sort(function(a, b) {
-                return parseFloat(a[4]) - parseFloat(b[4]);
-            });
-            return initialProducts;
-        } else if (sortOption === "alphabetical") {
-            initialProducts.sort(function(a, b) {
-                return a[2].localeCompare(b[2]);
-            });
-            return initialProducts;
-        }
     }
 
     function toggleControls() {
