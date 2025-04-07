@@ -6,8 +6,16 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Sparky';
+    src: url('fonts/SparkyStones.ttf') format('truetype'),
+    url('fonts/SparkyStones.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: "Oswald", sans-serif;
+    font-family: "Sparky", sans-serif;
     -webkit-text-fill-color: black;
     margin: 0;
     padding: 0;
@@ -312,7 +320,7 @@ footer {
 }
 
 .category-buttons button {
-    font-family: "Oswald", sans-serif;
+    font-family: "Sparky", sans-serif;
     font-size: large;
 }
 
@@ -391,7 +399,7 @@ body.sidebar-open {
     font-size: 20px;
     font-weight: bold;
     background-color: #ffffff; /* changed from f4f4f4 */
-    font-family: "Oswald", sans-serif;
+    font-family: "Sparky", sans-serif;
     font-size: xx-large;
     text-align: right; /* changed to hopefully? align the text to the center of the screen*/
 }
