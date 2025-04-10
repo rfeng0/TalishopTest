@@ -10,8 +10,8 @@
     font-family: 'Sparky';
     src: url('fonts/SparkyStones.ttf') format('truetype'),
     url('fonts/SparkyStones.ttf') format('truetype');
-    font-weight: normal;
-    font-style: 200;
+    font-weight: 200;
+    font-style: normal;
 }
 
 body {
