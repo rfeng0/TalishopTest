@@ -34,7 +34,7 @@ body {
 
 .bigText {
     font-size: xx-large;
-    font-weight: bold;
+    font-weight: 500;
     margin: 20px;
 }
 
@@ -44,7 +44,7 @@ body {
 
 .largeText {
     font-size: x-large;
-    font-weight: normal;
+    font-weight: 200;
 }
 
 .gray-line {
@@ -230,7 +230,7 @@ button img {
     margin-top: -22px;
     padding: 16px;
     color: white;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 18px;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
@@ -398,7 +398,7 @@ body.sidebar-open {
     border: none;
     padding: 10px;
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 500;
     background-color: #ffffff; /* changed from f4f4f4 */
     font-family: "Sparky", sans-serif;
     font-size: xx-large;
