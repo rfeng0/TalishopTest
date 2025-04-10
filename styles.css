@@ -4,14 +4,14 @@
     url('fonts/oswald.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-}
+}/* unused */
 
 @font-face {
     font-family: 'Sparky';
     src: url('fonts/SparkyStones.ttf') format('truetype'),
     url('fonts/SparkyStones.ttf') format('truetype');
     font-weight: normal;
-    font-style: normal;
+    font-style: 200;
 }
 
 body {
