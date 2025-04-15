@@ -70,8 +70,7 @@
         <input type="text" id="searchInput" placeholder="Search products..." oninput="renderCatalogue()">
     </div>
 
-    <label><input type="checkbox" id="peanutFreeCheckbox" onclick="renderCatalogue()">Peanut Free |</label>
-    <label><input type="checkbox" id="almondFreeCheckbox" onclick="renderCatalogue()">Almond Free</label>
+    <label><input type="checkbox" id="nutFreeCheckbox" onclick="renderCatalogue()">Nut Free |</label>
     <br><label for="sortDropdown">Sort By:</label>
     <select id="sortDropdown" onchange="renderCatalogue()">
         <option value="default">Default</option>
@@ -146,8 +145,7 @@
         
         var searchInput = document.getElementById("searchInput").value.toLowerCase();
 
-        var peanutFreeChecked = document.getElementById("peanutFreeCheckbox").checked;
-        var almondFreeChecked = document.getElementById("almondFreeCheckbox").checked;
+        var nutFreeChecked = document.getElementById("nutFreeCheckbox").checked;
 
         var sortOption = document.getElementById("sortDropdown").value;
         
@@ -167,10 +165,7 @@
 
         var filteredProducts = filteredProducts.filter(function (product) {
             var passesFilter = true;
-            if (peanutFreeChecked && product[5] === "1") {
-                passesFilter = false;
-            }
-            if (almondFreeChecked && product[6] === "1") {
+            if (nutFreeChecked && product[5] === "1") {
                 passesFilter = false;
             }
             return passesFilter;
